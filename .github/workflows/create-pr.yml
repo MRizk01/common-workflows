@@ -1,4 +1,4 @@
-name: Create and Merge PR
+name: Create Pull Request
 
 on:
   push:
@@ -12,25 +12,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Generate JWT for GitHub App
-        id: generate_jwt
+      - name: Set up Git user
         run: |
-          echo "Generating JWT..."
-          echo "::set-output name=jwt::$(ruby -r 'jwt' -e 'puts JWT.encode({iat: Time.now.to_i, exp: Time.now.to_i + 600, iss: ENV["APP_ID"]}, OpenSSL::PKey::RSA.new(Base64.decode64(ENV["PRIVATE_KEY"])), "RS256")')"
-        env:
-          APP_ID: ${{ secrets.APP_ID }}
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
-      - name: Get Access Token for Installation
-        id: get_token
-        run: |
-          echo "Fetching installation access token..."
-          response=$(curl -X POST -H "Authorization: Bearer ${{ steps.generate_jwt.outputs.jwt }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/app/installations/${{ secrets.INSTALLATION_ID }}/access_tokens)
-          echo "::set-output name=token::$(echo $response | jq -r .token)"
-
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}  # Ensure APP_ID is set correctly in your secrets
+          private-key: ${{ secrets.PRIVATE_KEY }}  # Ensure PRIVATE_KEY is set correctly in your secrets
+          owner: MRizk01  # Replace with your GitHub username or organization
+          repositories: '["MRizk01/gold"]'  # List of repositories if needed
+          skip-token-revoke: true  # Optional, depends on your needs
+ 
       - name: Create a new branch in Gold repo
         run: |
-          git clone https://x-access-token:${{ steps.get_token.outputs.token }}@github.com/MRizk01/gold.git
+          git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/MRizk01/gold.git
           cd gold
           git checkout -b new-feature-branch
           # Make changes, e.g., add a file
@@ -39,12 +38,19 @@ jobs:
           git commit -m "Add sample file"
           git push origin new-feature-branch
 
-      - name: Create a Pull Request
-        id: create_pr
-        run: |
-          pr_response=$(curl -X POST -H "Authorization: token ${{ steps.get_token.outputs.token }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/MRizk01/gold/pulls -d '{"title":"Auto-created PR","head":"new-feature-branch","base":"main"}')
-          echo "::set-output name=pr_number::$(echo $pr_response | jq -r .number)"
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          repository: MRizk01/gold
+          title: My Pull Request
+          body: This is a pull request created by GitHub Actions
+          head: new-feature-branch
+          base: main
 
-      - name: Merge the Pull Request
+      - name: Merge Pull Request
         run: |
-          curl -X PUT -H "Authorization: token ${{ steps.get_token.outputs.token }}" -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/MRizk01/gold/pulls/${{ steps.create_pr.outputs.pr_number }}/merge -d '{"merge_method":"merge"}'
+          curl -X PUT -H "Authorization: token ${{ steps.app-token.outputs.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"merge_method":"merge"}' \
+            https://api.github.com/repos/MRizk01/gold/pulls/${{ steps.create_pr.outputs.pr_number }}/merge
