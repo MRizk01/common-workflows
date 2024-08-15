@@ -21,12 +21,39 @@ jobs:
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: ${{ secrets.APP_ID }}  # Ensure APP_ID is set correctly in your secrets
-          private-key: ${{ secrets.PRIVATE_KEY }}  # Ensure PRIVATE_KEY is set correctly in your secrets
-          owner: MRizk01  # Replace with your GitHub username or organization
-          repositories: '["MRizk01/gold"]'  # List of repositories if needed
-          skip-token-revoke: true  # Optional, depends on your needs
- 
+          app-id: '971144'  # Replace with your actual App ID
+          private-key: |
+            -----BEGIN PRIVATE KEY-----
+            MIIEowIBAAKCAQEAo9XorfXzr3WKVrkLaz0rj+Po8goLsykHS7OXiAkJ35zcy6/b
+            CrN0rOu0jcYOrWpXhaxulCx7HFCH7QhIuIMd7gR+t54TxwVR1xCTQ1EdPzu7D4CM
+            UB4NaeczYl1L51kswQvVRJ3bQGgxE3fareNvHv/CS0OybP/8K3+eRAOMdXUVOYHJ
+            5zylwAjsIjaSClyRtu0+JIS6kuwpRilgvHYWPrvraEFF7899dho1T6xJFcTKvKkK
+            NyBpcUcdP28W8B3v0uMsPMVYwj2deMZZ3ah+2eaTZoF3nBVgmy4+t477UVazxj1s
+            GUr+K5AEehm0ooovcrkswKIHau3TJI3/vQWexwIDAQABAoIBAAqUXZoeL8Y8yNog
+            yOP75zw7c2dtzqObGqWAy2A1dTXDY16j1Hk0bWxdLCObjocUPuKa5+kZljmV2bEs
+            v8VqchxUnfotcwl/BnHk2B2Yt1LGAKZXnrftuOAF1gOcErK1x3YP1Y3Aw8+86q5f
+            Jvfjn+FYkqtZi8QOI7KLYyTxNbi/5FDpsRSncs0xEpS9uICoPdWvPDAJgf50wysf
+            VwPGNtobpFSlTZewmRH1Qs/8o9lY0W4FpAAMjysbSR5CpG6shLQ7PgQCG0zH4i0g
+            XGA/GfY+uEVbAC8tGVgq6rIWQzSF2LB5otllXl8mcgNgYICfyaxqQ3S6Jl1/bFXj
+            GrJQxkECgYEA0vBs1egFGqV2myVIhp8Z8CqvZRsI1bfVjs1TBzTPV0SjS6R2ga4U
+            jYUVbtdlMoUgHMHRD4yzssKWFoECTfJC4bvoHczhLR26UBuN6VweilFrLSBG3GqK
+            5R2P8fhLiDCgNQY4n81hCVd9r+Ji1TA4UVdJEpWkXLLGch+O660PPhUCgYEAxtWK
+            6XNUINeN+YdQ7vcSVD6BfCqH3pEfN0Xfakd0vf1VNcQtWnUi78lv62pG2ynEc36H
+            hi2JUBvpZAyYLRX+qWL2FMYGFmq7gFudfYkSSll/2DxaNeuI/8T7hoQqcvWUTfl3
+            Se94PxSgiTsjhdvMpbeCf9rNkg9lNhy+Mjji/GsCgYBhM9lzWM/BT64wICYjov1Y
+            5tKcTLDtiyEmBQfVskg5dq+pE8hoSce+zyzpPuirNx1tIwMrnzLPlUuEYz6knJal
+            Xum/kcHSAHjyoT/r4T9RjeNNkCoXOCF5Iv5KCpkD0SSCSrOdMA8fNun8Ot5AT1Ak
+            a4yIu9xZuygnPtOlVsJHYQKBgQCF49gFub5l2yDkbYVHVSKHjgudc/pIGkr96lQ2
+            eeWX5hZR/UdZCVW8SFXQHaGXBTofV42lAdbcFd+EmqKCgbQZleUFOg9xWu/l0Ett
+            9DZX0IqxLnrEolV/fcKt4yO+g7YZB6qXI+VB/P7ZSfRyt/7HfJooxEr3Vtydop9E
+            rF/U/wKBgEO4RodgNP6o+pQRPt4Pd/rrjQBNvNBRn6o8lumGA7Ty4e0CGlOfGPzS
+            /ApzqvGRqvGqGeLMQQbgUr9QUA9DvKQYLMTZXEDd+VB7vzS80KIAPWUBqzsYr03U
+            5MNIXOc3kzg9JS8mYscSVDiy9e4Zh0sECbXzU2/WxcvmOhqqv4Gj
+            -----END PRIVATE KEY-----
+          owner: MRizk01
+          repositories: 'MRizk01/gold'
+          skip-token-revoke: true
+
       - name: Create a new branch in Gold repo
         run: |
           git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/MRizk01/gold.git
@@ -47,10 +74,3 @@ jobs:
           body: This is a pull request created by GitHub Actions
           head: new-feature-branch
           base: main
-
-      - name: Merge Pull Request
-        run: |
-          curl -X PUT -H "Authorization: token ${{ steps.app-token.outputs.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d '{"merge_method":"merge"}' \
-            https://api.github.com/repos/MRizk01/gold/pulls/${{ steps.create_pr.outputs.pr_number }}/merge
