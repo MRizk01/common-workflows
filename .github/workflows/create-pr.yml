@@ -23,33 +23,34 @@ jobs:
         with:
           app-id: '971144'  # Replace with your actual App ID
           private-key: |
-            -----BEGIN PRIVATE KEY-----
-            MIIEowIBAAKCAQEAo9XorfXzr3WKVrkLaz0rj+Po8goLsykHS7OXiAkJ35zcy6/b
-            CrN0rOu0jcYOrWpXhaxulCx7HFCH7QhIuIMd7gR+t54TxwVR1xCTQ1EdPzu7D4CM
-            UB4NaeczYl1L51kswQvVRJ3bQGgxE3fareNvHv/CS0OybP/8K3+eRAOMdXUVOYHJ
-            5zylwAjsIjaSClyRtu0+JIS6kuwpRilgvHYWPrvraEFF7899dho1T6xJFcTKvKkK
-            NyBpcUcdP28W8B3v0uMsPMVYwj2deMZZ3ah+2eaTZoF3nBVgmy4+t477UVazxj1s
-            GUr+K5AEehm0ooovcrkswKIHau3TJI3/vQWexwIDAQABAoIBAAqUXZoeL8Y8yNog
-            yOP75zw7c2dtzqObGqWAy2A1dTXDY16j1Hk0bWxdLCObjocUPuKa5+kZljmV2bEs
-            v8VqchxUnfotcwl/BnHk2B2Yt1LGAKZXnrftuOAF1gOcErK1x3YP1Y3Aw8+86q5f
-            Jvfjn+FYkqtZi8QOI7KLYyTxNbi/5FDpsRSncs0xEpS9uICoPdWvPDAJgf50wysf
-            VwPGNtobpFSlTZewmRH1Qs/8o9lY0W4FpAAMjysbSR5CpG6shLQ7PgQCG0zH4i0g
-            XGA/GfY+uEVbAC8tGVgq6rIWQzSF2LB5otllXl8mcgNgYICfyaxqQ3S6Jl1/bFXj
-            GrJQxkECgYEA0vBs1egFGqV2myVIhp8Z8CqvZRsI1bfVjs1TBzTPV0SjS6R2ga4U
-            jYUVbtdlMoUgHMHRD4yzssKWFoECTfJC4bvoHczhLR26UBuN6VweilFrLSBG3GqK
-            5R2P8fhLiDCgNQY4n81hCVd9r+Ji1TA4UVdJEpWkXLLGch+O660PPhUCgYEAxtWK
-            6XNUINeN+YdQ7vcSVD6BfCqH3pEfN0Xfakd0vf1VNcQtWnUi78lv62pG2ynEc36H
-            hi2JUBvpZAyYLRX+qWL2FMYGFmq7gFudfYkSSll/2DxaNeuI/8T7hoQqcvWUTfl3
-            Se94PxSgiTsjhdvMpbeCf9rNkg9lNhy+Mjji/GsCgYBhM9lzWM/BT64wICYjov1Y
-            5tKcTLDtiyEmBQfVskg5dq+pE8hoSce+zyzpPuirNx1tIwMrnzLPlUuEYz6knJal
-            Xum/kcHSAHjyoT/r4T9RjeNNkCoXOCF5Iv5KCpkD0SSCSrOdMA8fNun8Ot5AT1Ak
-            a4yIu9xZuygnPtOlVsJHYQKBgQCF49gFub5l2yDkbYVHVSKHjgudc/pIGkr96lQ2
-            eeWX5hZR/UdZCVW8SFXQHaGXBTofV42lAdbcFd+EmqKCgbQZleUFOg9xWu/l0Ett
-            9DZX0IqxLnrEolV/fcKt4yO+g7YZB6qXI+VB/P7ZSfRyt/7HfJooxEr3Vtydop9E
-            rF/U/wKBgEO4RodgNP6o+pQRPt4Pd/rrjQBNvNBRn6o8lumGA7Ty4e0CGlOfGPzS
-            /ApzqvGRqvGqGeLMQQbgUr9QUA9DvKQYLMTZXEDd+VB7vzS80KIAPWUBqzsYr03U
-            5MNIXOc3kzg9JS8mYscSVDiy9e4Zh0sECbXzU2/WxcvmOhqqv4Gj
-            -----END PRIVATE KEY-----
+                -----BEGIN RSA PRIVATE KEY-----
+                MIIEowIBAAKCAQEAldb2w3kOmOPy48OiYpx0VrRByb/T3gfrkmh1UZXk3KrJkQfM
+                hcGQwhpSsxJI4iaLpNGrQeNMSY4aS7B4NoispNdpQuhK6aUrSPdyWP+GOx8OXz1T
+                xc0dYMh83bV0aCGZ9Ca+8YuNvmriloc7kaNnx1oQnpag17DYEsDP5TyxtQbRlcBH
+                MB9TSfK6V6QFPpiI4ZxWUYpBRuYEWcBFZQbEH01ur1hhukwoYo5WunwqYbrZ5dpn
+                SaLSuOonU5uq98Kzsjt4UtfNGuAJq2lrZyx0ehA5vtb16DLCOXCkCu5q0V1ZRz2Y
+                TL3NwFD6+5fTv/iqEGKpsIajZoWGtWk0nsFmYwIDAQABAoIBAD08J4aFD5kd9yJr
+                zg4cwFK6wfQQSCaB+BzSQbfA2VHxHgT+OfAjxeP9W/TAsTZy6DjIUwPPP1sEDu0F
+                xmsK+fs36VWllw/bJ1Bfh8SlUJcSvw3fA0Bf7fSimp0EzfjMWp1zxC70iE3cYpN/
+                2rFPJVdMEGSvTDY5mGQ5lfyqDDndWm1Ns3qs3qag2cL06EXQvkmSp0/euaFn8wf7
+                TdOUBrm1xu72TsZd09IQmYg73zRYw55eImso8YKOm50rPvXExUAUo9g3agtop7hK
+                w+lcjZs0+hrw4vCR3VfGAaI9f2huHANQXPiXfDE1xH30VTsU0T36lEPAoLv+3/Vx
+                LVcR1bECgYEAxXGr3vqgNQdEAF4B6PbAAAw9wNE5Rl7loU+BwiuMsOMeg1V5hdyT
+                4dbx2uhxuWmFI9hJJa/GnM7qrO1J6jPJqOxjsIbVbDZKJIKZ4WP92t8SZ0UUUGsw
+                EC5SZhmgc3o/vjFd5dWp//3wbuYeKVm2tXTh6O6537jG9qDf9293hgkCgYEAwkcU
+                u++kImdt7VCKXY6Tvg+F0mlKPwvPmN0MoTDgM+OGdSpHBxn1xZraTRKJTe+xk9ey
+                /VLApcoIq+xiq4H5rquilGTL2IuhGKQUWO3pDdsVedoR4sp5Dohz6y8405o9GJ7B
+                MaEU7JQCnG5l1wXwK+xbuzg3/BhrNI5zcEfyhAsCgYAbZ1N7dz2VHpUJmAKb2uN7
+                HjfT8zYH1lP4t5hC4th8FIm/oLVlJuA/kB2xTGG8YjDgcLx2RpdCXFWl+qkvoFB0
+                6ZpMfepRQpe3yYiiB8bMAfoD60qOftIE7Ojy0su6O1VtiFyH8cfOh+g+/CFji9gY
+                B0jzk26o5nR29o0fQpFMQQKBgCosqhieTkBVuaxh5pemwvXogsGJr9993eQuYHaB
+                mLpK8z5uHhsxjIQIOMmwc3Qiy6bvlWCe3UlgUX+ZAlZ/EcfUZKfYNdRdg2xI+k3P
+                397tJ31bVLSqBZudDaUJjEmLWyYEGKaAdH1jKCnzYVJLbLbsSYGcE7M7TdKL9g1y
+                4Pe/AoGBAJ6iAou8FDGkqtnjuKm47CjpncfGWmKUGpQknukgbB4FNtI4q84gMrEQ
+                J517Z+v/5ilkdwmI1iVL2TMJNKTdx01zj6atMVB8MYriQ3XTTtZ5bqXSmTWCbPHH
+                ZYI7emvvZHz4iaYmfA0SmimRmmKIKXEHyiAOHabpSd7VIShyNPJ5
+                -----END RSA PRIVATE KEY-----
+
           owner: MRizk01
           repositories: 'MRizk01/gold'
           skip-token-revoke: true
