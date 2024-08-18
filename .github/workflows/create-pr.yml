@@ -19,7 +19,7 @@ jobs:
     - name: Checkout gold repository
       uses: actions/checkout@v3
       with:
-        repository: goushaa/gold
+        repository: MRizk01/gold
         token: ${{ steps.get_workflow_token.outputs.token }}
         ref: main  
  
