@@ -40,6 +40,15 @@ jobs:
         git push origin post-${{ env.value }}
  
     - name: Create pull request
-      run: gh pr create -B main -H post-${{ env.value }} --title 'Merge branch with random number file' --body 'Created by GitHub action'
+      id: pr
+      run: |
+        gh pr create -B main -H post-${{ env.value }} --title 'Merge branch with random number file' --body 'Created by GitHub action'
+      env:
+        GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+
+    - name: Merge pull request
+      if: success()
+      run: |
+        gh pr merge ${{ steps.pr.outputs.number }} --merge --admin
       env:
         GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
