@@ -1,77 +1,35 @@
 name: Create Pull Request
-
+ 
 on:
   push:
     branches:
       - main
-
+ 
 jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Git user
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+           node-version: '16'
+           
       - name: Create GitHub App Token
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: '971144'  # Replace with your actual App ID
-          private-key: |
-                -----BEGIN RSA PRIVATE KEY-----
-                MIIEowIBAAKCAQEAldb2w3kOmOPy48OiYpx0VrRByb/T3gfrkmh1UZXk3KrJkQfM
-                hcGQwhpSsxJI4iaLpNGrQeNMSY4aS7B4NoispNdpQuhK6aUrSPdyWP+GOx8OXz1T
-                xc0dYMh83bV0aCGZ9Ca+8YuNvmriloc7kaNnx1oQnpag17DYEsDP5TyxtQbRlcBH
-                MB9TSfK6V6QFPpiI4ZxWUYpBRuYEWcBFZQbEH01ur1hhukwoYo5WunwqYbrZ5dpn
-                SaLSuOonU5uq98Kzsjt4UtfNGuAJq2lrZyx0ehA5vtb16DLCOXCkCu5q0V1ZRz2Y
-                TL3NwFD6+5fTv/iqEGKpsIajZoWGtWk0nsFmYwIDAQABAoIBAD08J4aFD5kd9yJr
-                zg4cwFK6wfQQSCaB+BzSQbfA2VHxHgT+OfAjxeP9W/TAsTZy6DjIUwPPP1sEDu0F
-                xmsK+fs36VWllw/bJ1Bfh8SlUJcSvw3fA0Bf7fSimp0EzfjMWp1zxC70iE3cYpN/
-                2rFPJVdMEGSvTDY5mGQ5lfyqDDndWm1Ns3qs3qag2cL06EXQvkmSp0/euaFn8wf7
-                TdOUBrm1xu72TsZd09IQmYg73zRYw55eImso8YKOm50rPvXExUAUo9g3agtop7hK
-                w+lcjZs0+hrw4vCR3VfGAaI9f2huHANQXPiXfDE1xH30VTsU0T36lEPAoLv+3/Vx
-                LVcR1bECgYEAxXGr3vqgNQdEAF4B6PbAAAw9wNE5Rl7loU+BwiuMsOMeg1V5hdyT
-                4dbx2uhxuWmFI9hJJa/GnM7qrO1J6jPJqOxjsIbVbDZKJIKZ4WP92t8SZ0UUUGsw
-                EC5SZhmgc3o/vjFd5dWp//3wbuYeKVm2tXTh6O6537jG9qDf9293hgkCgYEAwkcU
-                u++kImdt7VCKXY6Tvg+F0mlKPwvPmN0MoTDgM+OGdSpHBxn1xZraTRKJTe+xk9ey
-                /VLApcoIq+xiq4H5rquilGTL2IuhGKQUWO3pDdsVedoR4sp5Dohz6y8405o9GJ7B
-                MaEU7JQCnG5l1wXwK+xbuzg3/BhrNI5zcEfyhAsCgYAbZ1N7dz2VHpUJmAKb2uN7
-                HjfT8zYH1lP4t5hC4th8FIm/oLVlJuA/kB2xTGG8YjDgcLx2RpdCXFWl+qkvoFB0
-                6ZpMfepRQpe3yYiiB8bMAfoD60qOftIE7Ojy0su6O1VtiFyH8cfOh+g+/CFji9gY
-                B0jzk26o5nR29o0fQpFMQQKBgCosqhieTkBVuaxh5pemwvXogsGJr9993eQuYHaB
-                mLpK8z5uHhsxjIQIOMmwc3Qiy6bvlWCe3UlgUX+ZAlZ/EcfUZKfYNdRdg2xI+k3P
-                397tJ31bVLSqBZudDaUJjEmLWyYEGKaAdH1jKCnzYVJLbLbsSYGcE7M7TdKL9g1y
-                4Pe/AoGBAJ6iAou8FDGkqtnjuKm47CjpncfGWmKUGpQknukgbB4FNtI4q84gMrEQ
-                J517Z+v/5ilkdwmI1iVL2TMJNKTdx01zj6atMVB8MYriQ3XTTtZ5bqXSmTWCbPHH
-                ZYI7emvvZHz4iaYmfA0SmimRmmKIKXEHyiAOHabpSd7VIShyNPJ5
-                -----END RSA PRIVATE KEY-----
-
-          owner: MRizk01
-          repositories: 'MRizk01/gold'
-          skip-token-revoke: true
-
-      - name: Create a new branch in Gold repo
-        run: |
-          git clone https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/MRizk01/gold.git
-          cd gold
-          git checkout -b new-feature-branch
-          # Make changes, e.g., add a file
-          echo "Sample content" > sample.txt
-          git add sample.txt
-          git commit -m "Add sample file"
-          git push origin new-feature-branch
-
+          app-id: ${{ secrets.APP_ID }}  # Ensure APP_ID is set correctly in your secrets
+          private-key: ${{ secrets.PRIVATE_KEY }}  # Ensure PRIVATE_KEY is set correctly in your secrets
+          owner: MerihanAhmedM  # Replace with your GitHub username or organization
+          repositories: '["MerihanAhmedM/gold"]'  # List of repositories if needed
+          skip-token-revoke: true  # Optional, depends on your needs
+ 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
-          repository: MRizk01/gold
+          repository: MerihanAhmedM/gold
           title: My Pull Request
           body: This is a pull request created by GitHub Actions
-          head: new-feature-branch
+          head: main
           base: main
